@@ -1,0 +1,17 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  color: #666666;
+}
+
+#app {
+  background: #E5E5E5;
+}
+
+#formalization {
+  background-image: url('./assets/rococo.png');
+}

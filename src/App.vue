@@ -14,13 +14,3 @@ export default {
   }
 }
 </script>
-
-<style>
-body {
-  margin: 0;
-}
-
-#app {
-  background: #E5E5E5;
-}
-</style>
