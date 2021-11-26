@@ -1,4 +1,7 @@
-# teste-solfacil
+# Sol Fácil
+This is a test to measure knowledge for technology company, sol Fácil.
+
+The application was completed with SPA vue, using vuex with Namespacing modules, axios for requesting, tailwind for css classes and styles and unit tests
 
 ## Project setup
 ```
