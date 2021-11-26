@@ -3,15 +3,35 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --orange-primary: #FFB600;
+  --gray-primary: #666666; 
+  --gray-secondary: #E5E5E5;
+}
+
+.orange-primary {
+  color: var(--orange-primary);
+}
+
+.gray-primary {
+  color: var(--gray-primary);
+}
+
+.gray-secondary {
+  color: var(--gray-secondary);
+}
+
 body {
   margin: 0;
-  color: #666666;
+  color: var(--gray-primary);
+  background: var(--gray-secondary);
 }
 
-#app {
-  background: #E5E5E5;
-}
-
-#formalization {
+#home-page {
   background-image: url('./assets/rococo.png');
+  max-height: 216px;
+}
+
+.bg-orange-primary {
+  background: var(--orange-primary);
 }
