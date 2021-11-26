@@ -3,7 +3,7 @@ export const mapInfosFormalization = ({
   detalhes
 }) => ({
   session: mapSession(cessao),
-  details: detalhes
+  details: mapDetails(detalhes)
 })
 
 export const mapSession = ({
@@ -36,6 +36,26 @@ export const mapSession = ({
 
 })
 
-export const mapDetails = () => ({
-
-})
+export const mapDetails = (details) => details.map(({
+  cet,
+  cpf,
+  id,
+  nomeCompleto,
+  numCcb,
+  parcelas,
+  tipo,
+  valorAquisicao,
+  valorBruto,
+  valorFinanciado,
+}) => ({
+  cet,
+  cpf,
+  id,
+  fullName: nomeCompleto,
+  ccbNumber: numCcb,
+  installments: parcelas,
+  type: tipo,
+  acquisitionValue: Number(valorAquisicao),
+  grossValue: Number(valorBruto),
+  financedValue: Number(valorFinanciado),
+}))
