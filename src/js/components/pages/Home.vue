@@ -15,7 +15,10 @@
       ></Card>
     </div>
     <div id="table">
-
+      <Table
+        :labelColumns="labelColumns"
+        :rows="rows"
+      ></Table>
     </div>
   </div>
 </template>
@@ -23,22 +26,40 @@
 <script>
 import { mapActions, mapState, mapGetters } from 'vuex'
 import Card from '../shared/Card.vue'
+import Table from '../shared/Table.vue'
 
 export default {
   name: 'Home',
-  data() {
-    return {
-    }
-  },
+  data: () => ({
+    labelColumns: [
+      'Nome do cliente',
+      'Valor financiado',
+      'Valor bruto',
+      'Valor de aquisição',
+      'Prazo',
+      'N.º CCB'
+    ],
+  }),
   components: {
     Card,
+    Table,
   },
   mounted() {
     this.getInfosFormalization()
   },
   computed: {
-    ...mapState('formalization', ['session']),
+    ...mapState('formalization', ['session', 'details']),
     ...mapGetters('formalization', ['allSessionValues']),
+    rows() {
+      return this.details.map(item => ({
+        clientName: `${item.fullName}<br/>${item.cpf}`,
+        financedValue: `R$ ${item.financedValue.toLocaleString('pt-BR')}`,
+        grossValue: `R$ ${item.grossValue.toLocaleString('pt-BR')}`,
+        acquisitionValue: `R$ ${item.acquisitionValue.toLocaleString('pt-BR')}`,
+        negotiation: `${item.installments}x<br/>${item.cet === 'POS_FIXADO' ? 'Pós-Fixado' : 'Pré-fixado'}`,
+        ccbNumber: item.ccbNumber 
+      }))
+    },
   },
   methods: {
     ...mapActions('formalization', ['getInfosFormalization'])
