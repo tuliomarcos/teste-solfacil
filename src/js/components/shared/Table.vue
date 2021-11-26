@@ -27,7 +27,7 @@
 export default {
   props: {
     labelColumns: {
-      type: String,
+      type: Array,
       required: true,
     },
     rows: {
