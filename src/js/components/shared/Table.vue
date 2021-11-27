@@ -1,29 +1,31 @@
 <template>
-  <table id="shared-table" class="w-full">
-    <thead>
-      <tr class="bg-gray-terciary border-b border-yellow-500 rounded">
-        <th
-          v-for="(label, key) in labelColumns"
-          :key="key"
-          class="p-4 text-left"
-        >{{ label }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="(row, keyRow) in rows"
-        :key="keyRow"
-        class="border border-gray-300 md:text-sm xs:text-xs rounded"
-      >
-        <td
-          v-for="(value, key) in row"
-          :key="key"
-          v-html="value"
-          class="p-4 text-left"
-        ></td>
-      </tr>
-    </tbody>
-  </table>
+  <div id="shared-table" class="overflow-auto">
+    <table class="w-full">
+      <thead>
+        <tr class="bg-gray-terciary border-b border-yellow-500 rounded">
+          <th
+            v-for="(label, key) in labelColumns"
+            :key="key"
+            class="p-4 text-left"
+          >{{ label }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(row, keyRow) in rows"
+          :key="keyRow"
+          class="border border-gray-300 md:text-sm xs:text-xs rounded"
+        >
+          <td
+            v-for="(value, key) in row"
+            :key="key"
+            v-html="value"
+            class="p-4 text-left"
+          ></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -51,6 +53,7 @@ table {
   border-collapse: separate; 
   border: none;
   border-spacing: 0 8px;
+  overflow-x: scroll;
 }
 
 td, th {       
@@ -58,6 +61,7 @@ td, th {
   border-style: solid;
   border-color: #E0E0E0;
   padding: 1rem;
+  min-width: 140px;
 }
 
 th {
