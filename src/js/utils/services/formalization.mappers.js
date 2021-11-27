@@ -17,21 +17,21 @@ export const mapSession = ({
   createAt: criadoEm,
   financed: {
     title: 'Valor financiado',
-    valuePF: pf.financiado,
-    valuePJ: pj.financiado,
-    totalValue: total.financiado
+    valuePF: Number(pf.financiado).toLocaleString('pt-BR'),
+    valuePJ: Number(pj.financiado).toLocaleString('pt-BR'),
+    totalValue: Number(total.financiado).toLocaleString('pt-BR')
   },
   gross: {
     title: 'Valor bruto',
-    valuePF: pf.bruto,
-    valuePJ: pj.bruto,
-    totalValue: total.bruto
+    valuePF: Number(pf.bruto).toLocaleString('pt-BR'),
+    valuePJ: Number(pj.bruto).toLocaleString('pt-BR'),
+    totalValue: Number(total.bruto).toLocaleString('pt-BR')
   },
   acquisition: {
     title: 'Valor de aquisição',
-    valuePF: pf.aquisicao,
-    valuePJ: pj.aquisicao,
-    totalValue: total.aquisicao
+    valuePF: Number(pf.aquisicao).toLocaleString('pt-BR'),
+    valuePJ: Number(pj.aquisicao).toLocaleString('pt-BR'),
+    totalValue: Number(total.aquisicao).toLocaleString('pt-BR')
   }
 
 })

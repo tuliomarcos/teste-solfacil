@@ -13,9 +13,9 @@
       </div>
       <button class="font-medium bg-orange-primary text-gray-900 xs:py-3 xs:px-6 rounded text-sm">GERAR CNAB</button>
     </div>
-    <div id="total-formalizations" class="bg-white p-10">
+    <div id="total-formalizations" class="shadow-primary bg-white p-10 mb-10">
       <h1 class="text-xl mb-4 font-semibold">Total formalizações</h1>
-      <div class="grid xs:grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+      <div class="grid xs:grid-cols-1 md:grid-cols-3 gap-4">
         <Card
           v-for="(info, key) in allSessionValues"
           :key="key"
@@ -26,7 +26,7 @@
         ></Card>
       </div>
     </div>
-    <div id="table" class="bg-white p-10">
+    <div id="table" class="shadow-primary bg-white p-10">
       <Table
         :labelColumns="labelColumns"
         :rows="rows"
