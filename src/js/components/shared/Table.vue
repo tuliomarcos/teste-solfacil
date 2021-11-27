@@ -1,13 +1,14 @@
 <template>
   <div id="shared-table" class="overflow-auto">
-    <table class="w-full">
+    <table class="table w-full">
       <thead>
         <tr class="bg-gray-terciary border-b border-yellow-500 rounded">
           <th
-            v-for="(label, key) in labelColumns"
+            v-for="(col, key) in labelColumns"
             :key="key"
-            class="p-4 text-left"
-          >{{ label }}</th>
+            class="table__th-columns p-4 text-left"
+            @click="emitClick(col.key)"
+          >{{ col.label }}</th>
         </tr>
       </thead>
       <tbody>
@@ -17,10 +18,10 @@
           class="border border-gray-300 md:text-sm xs:text-xs rounded"
         >
           <td
-            v-for="(value, key) in row"
+            v-for="(col, key) in columns"
             :key="key"
-            v-html="value"
-            class="p-4 text-left"
+            v-html="row[col]"
+            class="table__td-columns p-4 text-left"
           ></td>
         </tr>
       </tbody>
@@ -36,7 +37,7 @@ export default {
       required: true,
     },
     rows: {
-      type: [Array, Number],
+      type: Array,
       required: true,
     },
     columns: {
@@ -44,6 +45,11 @@ export default {
       required: false,
     }
   },
+  methods: {
+    emitClick(label) {
+      return this.$emit('click', label)
+    }
+  }
 };
 </script>
 
@@ -67,6 +73,12 @@ td, th {
 th {
 	background: #E0E0E0;
 	border-bottom: 1px solid #FFB600;
+  cursor: pointer;
+}
+
+th:last-child,
+th:nth-last-child(2) {
+  cursor: not-allowed;
 }
 
 td:first-child,

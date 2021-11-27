@@ -1,4 +1,4 @@
 export const unformartValue = (value) => value
-    .replace('R$ ', '')
-    .replace('.', '')
-    .replace(',', '.')
+  .replace('R$ ', '')
+  .replace('.', '')
+  .replace(',', '.')

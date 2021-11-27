@@ -32,6 +32,8 @@
       <Table
         :labelColumns="labelColumns"
         :rows="rows"
+        :columns="columns"
+        @click="sortTable"
       ></Table>
     </div>
     <div id="back-page" class="flex justify-between items-center">
@@ -39,31 +41,58 @@
         <img src="../../../assets/logo.png" alt="Sol Fácil">
       </a>
       <a class="flex items-center cursor-pointer" target="_blank" href="https://landing.solfacil.com.br/">
-        <svg class="w-6 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 65" fill="none">
+        <svg class="w-8 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 65" fill="none">
           <circle cx="32" cy="32.5" r="31" stroke="#666666" stroke-width="2"/>
           <path d="M48 33.5C48.5523 33.5 49 33.0523 49 32.5C49 31.9477 48.5523 31.5 48 31.5L48 33.5ZM15.2929 31.7929C14.9024 32.1834 14.9024 32.8166 15.2929 33.2071L21.6569 39.5711C22.0474 39.9616 22.6805 39.9616 23.0711 39.5711C23.4616 39.1805 23.4616 38.5474 23.0711 38.1569L17.4142 32.5L23.0711 26.8431C23.4616 26.4526 23.4616 25.8195 23.0711 25.4289C22.6805 25.0384 22.0474 25.0384 21.6569 25.4289L15.2929 31.7929ZM48 31.5L16 31.5L16 33.5L48 33.5L48 31.5Z" fill="#666666"/>
         </svg>
-        <span>Voltar</span>
+        <span class="text-lg">Voltar</span>
       </a>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters } from 'vuex'
+import { mapActions, mapState, mapGetters, mapMutations } from 'vuex'
+import { INVALID_SORT_COLUMNS_NAME } from '../../utils/configs/configs'
 import Card from '../shared/Card.vue'
 import Table from '../shared/Table.vue'
 
 export default {
   name: 'Home',
   data: () => ({
+    ascending: false,
+    sortColumn: '',
     labelColumns: [
-      'Nome do cliente',
-      'Valor financiado',
-      'Valor bruto',
-      'Valor de aquisição',
-      'Prazo',
-      'N.º CCB'
+      { 
+        id: 0,
+        key: 'clientName',
+        label: 'Nome do cliente',
+      },
+      { 
+        id: 0,
+        key: 'financedValue',
+        label: 'Valor financiado',
+      },
+      { 
+        id: 0,
+        key: 'grossValue',
+        label: 'Valor bruto',
+      },
+      { 
+        id: 0,
+        key: 'acquisitionValue',
+        label: 'Valor de aquisição',
+      },
+      { 
+        id: 0,
+        key: 'negotiation',
+        label: 'Prazo',
+      },
+      { 
+        id: 0,
+        key: 'ccbNumber',
+        label: 'N.º CCB'
+      },
     ],
   }),
   components: {
@@ -76,6 +105,10 @@ export default {
   computed: {
     ...mapState('formalization', ['session', 'details']),
     ...mapGetters('formalization', ['allSessionValues']),
+    columns() {
+      if (this.rows.length == 0) return []
+      return Object.keys(this.rows[0])
+    },
     rows() {
       return this.details.map(item => ({
         clientName: `${item.fullName}<br/>${item.cpf}`,
@@ -88,6 +121,7 @@ export default {
     },
   },
   methods: {
+    ...mapMutations('formalization', ['sortNames']),
     ...mapActions('formalization', ['getInfosFormalization']),
     getCurrentDay() {
       const date = new Date 
@@ -95,6 +129,21 @@ export default {
     },
     getCurrentHours() {
       return new Date().toLocaleTimeString()
+    },
+    sortTable(col) {
+      if (INVALID_SORT_COLUMNS_NAME.includes(col)) return 
+      if (this.sortColumn === col) {
+        this.ascending = !this.ascending;
+      } else {
+        this.ascending = true;
+        this.sortColumn = col;
+      }
+
+      let ascending = this.ascending
+      if (col === 'clientName') this.sortNames({ col: 'fullName', ascending })
+      if (col === 'grossValue') this.sortNames({ col, ascending })
+      if (col === 'financedValue') this.sortNames({ col, ascending })
+      if (col === 'acquisitionValue') this.sortNames({ col, ascending })
     }
   }
 }
