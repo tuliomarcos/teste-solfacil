@@ -9,17 +9,12 @@
   --gray-secondary: #E5E5E5;
 }
 
-.orange-primary {
-  color: var(--orange-primary);
-}
-
-.gray-primary {
-  color: var(--gray-primary);
-}
-
-.gray-secondary {
-  color: var(--gray-secondary);
-}
+.orange-primary { color: var(--orange-primary); }
+.gray-primary { color: var(--gray-primary); }
+.gray-secondary { color: var(--gray-secondary); }
+.bg-orange-primary { background-color: var(--orange-primary); }
+.bg-gray-primary { background-color: var(--gray-primary); }
+.bg-gray-secondary { background-color: var(--gray-secondary); }
 
 body {
   margin: 0;
@@ -30,8 +25,4 @@ body {
 #home-page {
   background-image: url('./assets/rococo.png');
   max-height: 216px;
-}
-
-.bg-orange-primary {
-  background: var(--orange-primary);
 }

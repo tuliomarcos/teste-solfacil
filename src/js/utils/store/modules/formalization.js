@@ -29,6 +29,7 @@ export const actions = {
 
 export const getters = {
   allSessionValues(state) {
+    if(!Object.values(state.session).length) return []
     return [state.session.financed, state.session.gross, state.session.acquisition]
   }
 }
