@@ -25,6 +25,21 @@ body {
   background: var(--gray-secondary);
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-terciary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #777;
+  border-radius: 20px;
+  border: 1px solid var(--gray-terciary);
+}
+
 #home-page {
   background-image: url('./assets/rococo.png');
 }
