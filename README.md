@@ -13,6 +13,16 @@ npm install
 npm run serve
 ```
 
+### run the unit tests one time
+```
+npm run test
+```
+
+### watch the unit tests
+```
+npm run t -w
+```
+
 ### Compiles and minifies for production
 ```
 npm run build
